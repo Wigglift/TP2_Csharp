@@ -1,4 +1,6 @@
-﻿public class Program { 
+﻿using System.Globalization;
+
+public class Program { 
 public static void Main(string[] args)
     {
         DateTime data = pegarData();
@@ -7,19 +9,24 @@ public static void Main(string[] args)
     }
     public static DateTime pegarData()
     {
-        Console.WriteLine("Digite o dia de nascimento");
-        int data_nasc_dia = int.Parse(Console.ReadLine());
+        do
+        {
+            try
+            {
 
-        Console.WriteLine("Digite o mês de nascimento");
-        int data_nasc_mes = int.Parse(Console.ReadLine());
+                Console.WriteLine("Digite a data de nascimento no formado dd/mm/aaaa");
+                DateTime data = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-        Console.WriteLine("Digite o ano de nascimento");
-        int data_nasc_ano = int.Parse(Console.ReadLine());
-
-        return new DateTime(data_nasc_ano,data_nasc_mes,data_nasc_dia);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine("Digite a data no formato certo e com informações válidas\n");
+            }
+        } while (true);
     }
 
-    public static DateTime tempoDeVida(DateTime data)
+    public static int[] tempoDeVida(DateTime data)
     {
         DateTime hoje = DateTime.Today;
 
@@ -41,13 +48,19 @@ public static void Main(string[] args)
             meses += 12;
         }
 
-        return new DateTime(anos, meses, dias);
+        int[] data_arr = new int[3];
+
+        data_arr[0] = anos;
+        data_arr[1] = meses;
+        data_arr[2] = dias;
+
+        return data_arr;
 
     }
 
-    public static void apresentarIdade(DateTime data)
+    public static void apresentarIdade(int[] data)
     {
-        Console.WriteLine("Você tem {0} anos, {1} meses e {2} dias de vida", data.Year, data.Month, data.Day);
+        Console.WriteLine("Você tem {0} anos, {1} meses e {2} dias de vida", data[0], data[1], data[2]);
     }
 
 }
