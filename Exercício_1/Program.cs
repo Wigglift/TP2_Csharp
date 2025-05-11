@@ -50,6 +50,8 @@ public static void Main(string[] args)
 
         int[] data_arr = new int[3];
 
+        //atribuído número das datas para um array, por causa do tipo DateTime começar com o ano 1
+
         data_arr[0] = anos;
         data_arr[1] = meses;
         data_arr[2] = dias;
