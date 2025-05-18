@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-public class Program { 
+class Exercicio1 { 
 public static void Main(string[] args)
     {
         DateTime data = pegarData();
